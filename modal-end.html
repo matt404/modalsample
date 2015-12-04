@@ -4,10 +4,10 @@
     <title>Modal Example</title>
     <script>
     function CloseMe(){
-      if(top){
-        top.CloseModal();
-      }else if(parent){
-        parent.CloseModal();
+      if(top && typeof(top.CloseModal) === 'function'){
+          top.CloseModal();
+      }else if(opener && typeof(opener.CloseModal) === 'function'){
+        opener.CloseModal();
       }else{
         throw new Error("failed to find parent");
       }
