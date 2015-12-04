@@ -1,0 +1,76 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <title>Modal Example</title>
+    <script>
+    var modalWindow;
+    function OpenModal(){
+      if (IsMobile())
+      {
+        var winURL = "modal-start.html";
+        var winName = "_blank";
+        var winOptions = "";//"height=400,width=600,menubar=0,status=0,directories=0";
+        var winReplace = true;
+        modalWindow = window.open(winURL,winName,winOptions,winReplace);
+      }else{
+        //Create the modal elements
+        var divBG = document.createElement("div"),
+        divModalContainer = document.createElement("div"),
+        iFrameModal = document.createElement("iframe");
+
+        //Set element ids
+        divBG.id = "ecommPaymentsDivBG"
+        divModalContainer.id = "ecommPaymentsDivModalContainer"
+        iFrameModal.id = "ecommPaymentsDivModalIframe"
+
+        //Set style classes
+        divBG.className = "ecomm-payments-modal-bg"
+        divModalContainer.className = "ecomm-payments-modal-container"
+        iFrameModal.className = "ecomm-payments-modal-iframe"
+
+        //Set iframe page URL
+        iFrameModal.src = "modal-start.html";
+
+        //Append the elements
+        divModalContainer.appendChild(iFrameModal);
+        document.body.appendChild(divBG);
+        document.body.appendChild(divModalContainer);
+      }
+    }
+
+    function CloseModal(){
+      if (IsMobile())
+      {
+        modalWindow.close;
+      }else{
+        document.body.removeChild(document.getElementById("ecommPaymentsDivBG"));
+        document.body.removeChild(document.getElementById("ecommPaymentsDivModalContainer"));
+      }
+    }
+
+    function IsMobile(){
+      var isMobile = false;
+      var ua = navigator.userAgent;
+      if (ua.match(/Android/i)
+          || ua.match(/webOS/i)
+          || ua.match(/iPhone/i)
+          || ua.match(/iPad/i)
+          || ua.match(/iPod/i)
+          || ua.match(/BlackBerry/i)
+          || ua.match(/Windows Phone/i)
+          || ua.match(/Opera Mini/i)
+          || ua.match(/IEMobile/i))
+      {
+        isMobile = true;
+      }
+      return isMobile;
+    }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="">
+      <button onclick="OpenModal()">Open Modal</button>
+    </div>
+  </body>
+</html>

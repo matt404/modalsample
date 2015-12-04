@@ -1,0 +1,21 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <title>Modal Example</title>
+    <script>
+    function CloseMe(){
+      if(top){
+        top.CloseModal();
+      }else if(parent){
+        parent.CloseModal();
+      }else{
+        throw new Error("failed to find parent");
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div>You have just returned from the external site.</div>
+    <button onclick="CloseMe()">Click to fire the callback and close window</button>
+  </body>
+</html>
